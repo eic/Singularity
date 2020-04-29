@@ -16,16 +16,16 @@ This repository is part of [the software tutorial](https://eic-detector.github.i
 
 # How to download
 
-EIC Fun4All software can be obtained to your local computing environment in two ways: 
+EIC Fun4All software can be obtained to your local computing environment in two ways. You can use both ways concurrently - there is no collision between these two options. Which you use is determined by the start of the singularity container (look closely - for option 1 you use /cvmfs:/cvmfs which mounts our cvmfs volume under /cvmfs, for option 2 you use cvmfs:/cvmfs which mounts your local copy under /cvmfs)
 
-1. **[Option-1 Mount sPHENIX CVMFS](#option-1-mount-sphenix-cvmfs)**: sPHENIX container, software and builds are distribute on [CVMFS](https://www.racf.bnl.gov/docs/services/cvmfs/info) since Nov 2018. Like RCF/SDCC computing cluster at BNL, external collaborating computing center could also mount the `/cvmfs/sphenix.opensciencegrid.org` (*preferred choice*) or `/cvmfs/eic.opensciencegrid.org/` CVMFS repository, which automatically obtain, buffer and update all sPHENIX build files. `/cvmfs/sphenix.opensciencegrid.org` is also distributed by default throughout the [Open Science Grid](opensciencegrid.org). 
-2. **[Option-2 Download sPHENIX build via HTTPS archive](#option-2-download-sphenix-build-via-https-archive)**: one can also directly download the files for sPHENIX build to a local folder via [the nightly refreshed HTTPS archive](https://www.phenix.bnl.gov/WWW/publish/phnxbld/sPHENIX/Singularity/). 
+1. **[Option-1 Mount EIC CVMFS](#option-1-mount-eic-cvmfs)**: EIC singularity container, software and builds are distribute on [CVMFS](https://www.racf.bnl.gov/docs/services/cvmfs/info) since Nov 2018. Like RCF/SDCC computing cluster at BNL, external collaborating computing center could also mount the `/cvmfs/eic.opensciencegrid.org/` CVMFS repository, which automatically obtain, buffer and update all EIC Fun4All build files. `/cvmfs/eic.opensciencegrid.org` is also distributed by default throughout the [Open Science Grid](opensciencegrid.org). 
+2. **[Option-2 Download sPHENIX build via HTTPS archive](#option-2-download-eic-build-via-https-archive)**: one can also directly download the files for the EIC Fun4All build to a local folder via [the nightly refreshed HTTPS archive](https://www.phenix.bnl.gov/WWW/publish/phnxbld/EIC/Singularity/). 
 
-The advantage of **Option-1 Mount sPHENIX CVMFS** is that it mounts all sPHENIX builds and software and perform automatic caching and updates. This would be suitable for the case of a computing center or server environment. However, it requires constant network connection to function. Therefore, if you wish to use sPHENIX/EIC-sPHENIX software on a laptop during travel, **Option-2 Downloading sPHENIX build via HTTPS archive** would work best. All download instructions are the same for sPHENIX and EIC-sPHENIX. 
+The advantage of **Option-1 Mount EIC CVMFS** is that it mounts all EIC Fun4All builds and software and performs automatic caching and updates. This would be suitable for the case of a computing center or server environment. However, it requires constant network connection to function. Therefore, if you wish to use the EIC Fun4All software on a laptop during travel, **Option-2 Downloading EIC Fun4All builds via HTTPS archive** would work best.
 
-*Note*: although singularity container are supported under [MacOS](#mac-installation) and Windows Linux Subsystem, it runs best under Linux. Therefore, for Windows and Mac user, it would produce most smooth experience to run Option2 within a Linux virtual machine, such as [an Unbuntu VirtualBox](VirtualBox.md).
+*Note*: although singularity containers are supported under [MacOS](#mac-installation) and Windows Linux Subsystem, it runs best under Linux. Therefore, for Windows and Mac user, it is recommended to run Option2 within a Linux virtual machine, we provide [a Unbuntu VirtualBox](VirtualBox.md) which has cvmfs and singularity enabled.
 
-## Option-1: Mount sPHENIX CVMFS
+## Option-1: Mount EIC CVMFS
 
 1. On your local system, install [Singularity](https://sylabs.io/singularity/). 
 
@@ -33,42 +33,31 @@ The advantage of **Option-1 Mount sPHENIX CVMFS** is that it mounts all sPHENIX 
 
 2. Install [CVMFS from CERN](https://cernvm.cern.ch/portal/filesystem/quickstart). CERN support build packages under (various Linux distribution and MAC)[https://cernvm.cern.ch/portal/filesystem/downloads].
 
-    - *Note: for loading `/cvmfs/sphenix.opensciencegrid.org` by default, you may need to add `CVMFS_STRICT_MOUNT=no` to `/etc/cvmfs/default.local`.*
+    - *Note: for loading `/cvmfs/eic.opensciencegrid.org` by default, you may need to add `CVMFS_STRICT_MOUNT=no` to `/etc/cvmfs/default.local`.*
 
-   After completing step 2, please confirm you can read local path `/cvmfs/eic.opensciencegrid.org/`, which should show same content as that on RCF interactive nodes. 
+   After completing this, please confirm you can read local path `/cvmfs/eic.opensciencegrid.org/`, which should show same content as that on RCF interactive nodes. 
    
-4. launch singularity container for sPHENIX and EIC-sPHENIX with following command
-
-
-  - For `/cvmfs/sphenix.opensciencegrid.org` users:
-
-```
-singularity shell -B /cvmfs:/cvmfs /cvmfs/sphenix.opensciencegrid.org/singularity/rhic_sl7_ext.simg
-source /cvmfs/sphenix.opensciencegrid.org/x8664_sl7/opt/sphenix/core/bin/sphenix_setup.sh -n   # setup sPHENIX environment in the singularity container shell. Note the shell is bash by default
-root # give a test
-```
-
-*For Singularity v3+, in particular CERN computing users: `rhic_sl7_ext.simg` might be slow to load under certain Singularity security settings at your computing center. In that case, please load with an alternative image: `singularity shell -B /cvmfs:/cvmfs /cvmfs/sphenix.opensciencegrid.org/singularity/rhic_sl7_ext`*
-
-  - For `/cvmfs/eic.opensciencegrid.org` users:
+3. launch singularity container for EIC Fun4All with following command
 
 ```
 singularity shell -B /cvmfs:/cvmfs /cvmfs/eic.opensciencegrid.org/singularity/rhic_sl7_ext.simg
-source /opt/sphenix/core/bin/sphenix_setup.sh -n   # setup sPHENIX environment in the singularity container shell. Note the shell is bash by default
+source /cvmfs/eic.opensciencegrid.org/x8664_sl7/opt/fun4all/core/bin/eic_setup.sh -n   # setup EIC Fun4All environment in the singularity container shell. Note the shell is bash by default
 root # give a test
 ```
 
-## Option-2: Download sPHENIX build via HTTPS archive
+*For Singularity v3+, in particular CERN computing users: `rhic_sl7_ext.simg` might be slow to load under certain Singularity security settings at your computing center. In that case, please load with an alternative image: `singularity shell -B /cvmfs:/cvmfs /cvmfs/eic.opensciencegrid.org/singularity/rhic_sl7_ext`*
+
+## Option-2: Download the EIC Fun4All build via our HTTPS archive
 
 
 1. On your local system, install [Singularity](https://sylabs.io/singularity/). 
 
-    - *Note: Singularity installation may require host to support local compilation. E.g. on Ubuntu, it can be obtained via `sudo apt-get install libtool m4 automake`*
+    - *Note: Singularity installation may require host to support local compilation. E.g. on Ubuntu, the compilation tools can be obtained via `sudo apt-get install libtool m4 automake`*
 
 2. Download this repository:
 
 ```
-git clone git@github.com:sPHENIX-Collaboration/Singularity.git
+git clone https://github.com/eic/Singularity.git
 cd Singularity/
 ```
 
@@ -78,7 +67,7 @@ cd Singularity/
 ./updatebuild.sh
 ```
 
-This macro download the current release of sPHENIX/EIC-sPHENIX Singularity container and nightly build libs. The total download size is about 5 GB  and decompressed disk usage is about 10 GB. Two build versions are supported with default as the `new` build, as well as the `root5` build with `./updatebuild.sh --build=root5`. The new build with gcc 8.3 can be downloaded using `./updatebuild.sh --sysname=gcc-8.3`
+This script downloads the current release of the EIC Singularity container and up to date versions of our software. The total download size is about 5 GB  and the decompressed disk usage is about 10 GB. Two build versions are supported with default as the `new` build with`./updatebuild.sh`. The new build with gcc 8.3 can be downloaded using `./updatebuild.sh --sysname=gcc-8.3`
 
 
 4. Start the container with 
@@ -88,7 +77,7 @@ singularity shell -B cvmfs:/cvmfs cvmfs/eic.opensciencegrid.org/singularity/rhic
 source /cvmfs/eic.opensciencegrid.org/x8664_sl7/opt/fun4all/core/bin/eic_setup.sh -n   # setup EIC environment in the singularity container shell. Note the shell is bash by default
 root # give a test
 ```
-*Please note the slight difference in singularity shell commands for option 1 and option 2*
+*Please note the slight difference in singularity shell commands for option 1 and option 2 (/cvmfs versus cvmfs)*
 
 5. To get daily build update, run the download/update macro [updatebuild.sh](./updatebuild.sh) to sync build files again. 
 
