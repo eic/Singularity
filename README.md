@@ -31,8 +31,7 @@ The advantage of **Option-1 Mount EIC CVMFS** is that it mounts all EIC Fun4All 
 
     - *Note: Singularity installation may require host to support local compilation. E.g. on Ubuntu, it can be obtained via `sudo apt-get install libtool m4 automake`*
 
-2. Install [CVMFS from CERN](https://cernvm.cern.ch/portal/filesystem/quickstart). CERN support build packages under (various Linux distribution and MAC)[https://cernvm.cern.ch/portal/filesystem/downloads].
-
+2. Install [CVMFS from CERN](https://cernvm.cern.ch/portal/filesystem/quickstart). CERN support [build packagess](https://cernvm.cern.ch/portal/filesystem/downloads) for various Linux distributions and MAC
     - *Note: for loading `/cvmfs/eic.opensciencegrid.org` by default, you may need to add `CVMFS_STRICT_MOUNT=no` to `/etc/cvmfs/default.local`.*
 
    After completing this, please confirm you can read local path `/cvmfs/eic.opensciencegrid.org/`, which should show same content as that on RCF interactive nodes. 
