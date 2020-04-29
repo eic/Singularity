@@ -1,14 +1,14 @@
-# Using sPHENIX and EIC-sPHENIX software with an Ubuntu Virtual Box
+# Using EIC Fun4All software with an Ubuntu Virtual Box
 
-[Singularity container](./README.md) for sPHENIX and EIC-sPHENIX allow collaborators to run sPHENIX RCF/SDCC environment with the nightly builds on your local computers or on external high-performance computing clusters. It is optimized for offsite computing on Linux-based systems. 
+[Singularity container](./README.md) for sPHENIX and EIC-sPHENIX allow collaborators to run the EIC RCF/SDCC environment with the nightly builds on your local computers or on external high-performance computing clusters. It is optimized for offsite computing on Linux-based systems. 
 
-On Windows or MacOS PC/laptop though, it could be tricky to run Singularity directly on the host system. Therefore, this page provide a solution to run sPHENIX Singularity container under an Linux Ubuntu [virtual box](https://www.virtualbox.org/wiki/Downloads), which can run well on Windows or MacOS. 
+On Windows or MacOS PC/laptop though, it could be tricky to run Singularity directly on the host system. Therefore, this page provide a solution to run EIC Singularity container under an Linux Ubuntu [virtual box](https://www.virtualbox.org/wiki/Downloads), which can run well on Windows or MacOS. 
 
 1. Install VirtualBox on your host system: [Virtual Box](https://www.virtualbox.org/)
 
-2. Download [sPHENIX Ubuntu 18.04LTS Image](https://www.phenix.bnl.gov/WWW/publish/phnxbld/sPHENIX/Singularity/Fun4AllSingularityDistribution.ova). The MD5SUM is `87a6464dbae831724bc9eb3b508f2646`.
+2. Download [EIC Ubuntu 18.04LTS Image](https://www.phenix.bnl.gov/WWW/publish/phnxbld/EIC/Singularity/Fun4AllSingularityDistribution.ova). The MD5SUM is `87a6464dbae831724bc9eb3b508f2646`.
 
-This image has CVMFS and Singularity3 preinstalled, enabling direct loading all sPHENIX builds via OpenScienceGrid network (i.e. Option-1 of [main documentation](/README.md)).   
+This image has CVMFS and Singularity3 preinstalled, enabling direct loading all EIC Fun4All builds via the OpenScienceGrid network (i.e. Option-1 of [main documentation](/README.md)).   
 
 3. Import the above image to your virtual box ([HowTs](https://www.google.com/search?q=Virtal+box+import+ova)). Please ensure you have internet connection before the next step (e.g. visit www.bnl.gov from inside the VirtualBox)
 

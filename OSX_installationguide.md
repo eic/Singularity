@@ -1,4 +1,4 @@
-# Installation Guide for sPHENIX-EIC Standalone Software
+# Installation Guide for EIC Fun4All Standalone Software
 
 ### Introduction
 
@@ -10,12 +10,12 @@ Alternatively, Here is three steps to the software installation using `vagrant`:
 	   your local computer (OSX or windows) 
 	2. Boot up the virtual machine (VM) with some 
 	   specifications
-	3. Install sPHENIX-EIC software in the VM
+	3. Install EIC Fun4All software in the VM
 
 	
 I'll go through each of these steps, with appropriate links. Note that there are two useful documents which I used to help me install things:
 
-1. [sPHENIX github repo](https://github.com/sPHENIX-Collaboration/singularity)
+1. [EIC github repo](https://github.com/eic/singularity)
 
 2. [John Haggerty's instructions on enabling 3D graphics](https://indico.bnl.gov/event/4046/contributions/25558/attachments/21219/28796/singularity_mac_haggerty_20181217.pdf)
 
@@ -63,7 +63,7 @@ MacBook-Pro-145:~ Joe$ vagrant up
 MacBook-Pro-145:~ Joe$ vagrant ssh
 ```
 
-Note that this isn't where you need Singularity v2.5.0, as in Jin's tutorial. That comes at a later stage. If you replace the 2.4 above with a 2.5, it won't work. Now you should be ssh-ed in a VM in which you can download Singularity v2.5.0, the necessary sPHENIX software, and get ready to run simulations.
+Note that this isn't where you need Singularity v2.5.0, as in Jin's tutorial. That comes at a later stage. If you replace the 2.4 above with a 2.5, it won't work. Now you should be ssh-ed in a VM in which you can download Singularity v2.5.0, the necessary EIC Fun4All software, and get ready to run simulations.
 
 
 
@@ -97,7 +97,7 @@ If you have issues with git connecting to the VM, that is just because you haven
 
 
 
-Now you actually have Singularity v2.5.0 installed on the VM. Time to reboot it back up with some sPHENIX specific settings. Type
+Now you actually have Singularity v2.5.0 installed on the VM. Time to reboot it back up with some EIC specific settings. Type
 
 ```
 vagrant@vagrant:~$ exit
@@ -115,9 +115,9 @@ In principle, one does not need a VM if you are a linux user and you can just di
 
 
 
-## Step 2: Setup the VM to handle sPHENIX simulations
+## Step 2: Setup the VM to handle EIC simulations
 
-sPHENIX simulations require a good deal of memory to be able to run. Just to build the CEMC and MVTX detectors requires a couple of GB of memory. Therefore, you need to setup your VM to have access to the additional RAM in your laptop.
+EIC simulations require a good deal of memory to be able to run. Just to build the CEMC and MVTX detectors requires a couple of GB of memory. Therefore, you need to setup your VM to have access to the additional RAM in your laptop.
 
 When you booted up the VM for the first time, it should have created a file called `Vagrantfile` in your directory. Open it up in your favorite text editor:
 
@@ -161,48 +161,48 @@ MacBook-Pro-145:singularity-vm Joe$ vagrant up
 MacBook-Pro-145:singularity-vm Joe$ vagrant ssh
 ```
 
-Now you are back in the VM, and should have the necessary tools to actually go and download the sPHENIX framework and run simulations.
+Now you are back in the VM, and should have the necessary tools to actually go and download the EIC Fun4All framework and run simulations.
 
 
 
-## Step 3: Install sPHENIX software in the VM
+## Step 3: Install EIC software in the VM
 
 
-Now you can get the sPHENIX software, which basically follows Jin's instructions from the original [github](https://github.com/sPHENIX-Collaboration/singularity) README.md page.
+Now you can get the EIC software, which basically follows Jin's instructions from the original [github](https://github.com/eic/Singularity) README.md page.
 
 
 ```
-vagrant@vagrant:~$ git clone git@github.com:sPHENIX-Collaboration/Singularity.git
+vagrant@vagrant:~$ git clone https://github.com/eic/Singularity.git
 vagrant@vagrant:~$ cd Singularity/
 ```
-Run the download/update script which gets the latest build libraries from the sPHENIX repo. If this is your first time running it, it will take a while (10-20 min) as it downloads about 10 GB of stuff to the VM
+Run the download/update script which gets the latest build libraries from the EIC repo. If this is your first time running it, it will take a while (10-20 min) as it downloads about 10 GB of stuff to the VM
 
 ```
 ./updatebuild.sh
 ```
 
-Now start a singularity container, which will actually be the place where you can get the sPHENIX environment:
+Now start a singularity container, which will actually be the place where you can get the EIC Fun4All environment:
 
 ```
-vagrant@vagrant:~$ singularity shell -B cvmfs:/cvmfs cvmfs/sphenix.sdcc.bnl.gov/singularity/rhic_sl7_ext.simg
+vagrant@vagrant:~$ singularity shell -B cvmfs:/cvmfs cvmfs/eic.opensciencegrid.org/singularity/rhic_sl7_ext.simg
 ```
 
-Run the sPHENIX setup script, and you should be in business
+Run the eic setup script, and you should be in business
 
 ```
-Singularity rhic_sl7_ext.simg:~/Singularity> source /opt/sphenix/core/bin/sphenix_setup.sh -n
+Singularity rhic_sl7_ext.simg:~/Singularity> source /cvmfs/eic.opensciencegrid.org/x8664_sl7/opt/fun4all/core/bin/eic_setup.sh -n
 ```
 
 
 
-Now you can download e.g. the git macros repo and run some simulations. If you are doing this on your local laptop, you will likely be limited by memory consumption (e.g. I only have 8GB RAM total to disperse between my own laptop and the VM running the simulations, which can be memory heavy). 4 GB of RAM should cover most sPHENIX simulations; events with HIJING embedding can be substantially larger, though.
+Now you can download e.g. the git macros repo and run some simulations. If you are doing this on your local laptop, you will likely be limited by memory consumption (e.g. I only have 8GB RAM total to disperse between my own laptop and the VM running the simulations, which can be memory heavy). 4 GB of RAM should cover most EIC simulations; events with HIJING embedding can be substantially larger, though.
 
 ```
 Singularity rhic_sl7_ext.simg:~/Singularity> mkdir git
 Singularity rhic_sl7_ext.simg:~/Singularity> cd git
-Singularity rhic_sl7_ext.simg:~/Singularity> git clone git@github.com:sPHENIX-Collaboration/macros.git
-Singularity rhic_sl7_ext.simg:~/Singularity> cd macros/macros/g4simulations/
-Singularity rhic_sl7_ext.simg:~/Singularity> root -b -l Fun4All_G4_sPHENIX.C
+Singularity rhic_sl7_ext.simg:~/Singularity> git clone https://github.com/eic/fun4all_macros.git
+Singularity rhic_sl7_ext.simg:~/Singularity> cd fun4all_macros/macros/g4simulations/
+Singularity rhic_sl7_ext.simg:~/Singularity> root -b -l Fun4All_G4_EICDetector.C
 ```
 
 
@@ -304,21 +304,21 @@ you should see this memory limit reflected with this command and/or the `top` sh
 
 
 
-One can also check that the necessary libraries are in the correct place by running (after running the sphenix environment script), which should print out many of the libraries for e.g. g4detectors and soft link pointers to where the libraries exist in your downloaded code.
+One can also check that the necessary libraries are in the correct place by running (after running the eic environment script), which should print out many of the libraries for e.g. g4detectors and soft link pointers to where the libraries exist in your downloaded code.
 
 ```
 Singularity rhic_sl7_ext.simg:~/Singularity> ldd $OFFLINE_MAIN/lib/libg4detectors.so
 linux-vdso.so.1 =>  (0x00007ffe3b261000)
-	libg4detectors_io.so.0 => /cvmfs/sphenix.sdcc.bnl.gov/x8664_sl7/release/release_new/new.2/lib/libg4detectors_io.so.0 (0x00007f7cd6403000)
-	libphparameter.so.0 => /cvmfs/sphenix.sdcc.bnl.gov/x8664_sl7/release/release_new/new.2/lib/libphparameter.so.0 (0x00007f7cd61da000)
-	libphg4gdml.so.0 => /cvmfs/sphenix.sdcc.bnl.gov/x8664_sl7/release/release_new/new.2/lib/libphg4gdml.so.0 (0x00007f7cd5f94000)
-	libphool.so.0 => /cvmfs/sphenix.sdcc.bnl.gov/x8664_sl7/release/release_new/new.2/lib/libphool.so.0 (0x00007f7cd5d58000)
-	libCGAL.so.13 => /cvmfs/sphenix.sdcc.bnl.gov/x8664_sl7/release/release_new/new.2/lib/libCGAL.so.13 (0x00007f7cd5b3a000)
-	libSubsysReco.so.0 => /cvmfs/sphenix.sdcc.bnl.gov/x8664_sl7/release/release_new/new.2/lib/libSubsysReco.so.0 (0x00007f7cd5937000)
+	libg4detectors_io.so.0 => /cvmfs/eic.opensciencegrid.org/x8664_sl7/release/release_new/new.2/lib/libg4detectors_io.so.0 (0x00007f7cd6403000)
+	libphparameter.so.0 => /cvmfs/eic.opensciencegrid.org/x8664_sl7/release/release_new/new.2/lib/libphparameter.so.0 (0x00007f7cd61da000)
+	libphg4gdml.so.0 => /cvmfs/eic.opensciencegrid.org/x8664_sl7/release/release_new/new.2/lib/libphg4gdml.so.0 (0x00007f7cd5f94000)
+	libphool.so.0 => /cvmfs/eic.opensciencegrid.org/x8664_sl7/release/release_new/new.2/lib/libphool.so.0 (0x00007f7cd5d58000)
+	libCGAL.so.13 => /cvmfs/eic.opensciencegrid.org/x8664_sl7/release/release_new/new.2/lib/libCGAL.so.13 (0x00007f7cd5b3a000)
+	libSubsysReco.so.0 => /cvmfs/eic.opensciencegrid.org/x8664_sl7/release/release_new/new.2/lib/libSubsysReco.so.0 (0x00007f7cd5937000)
 ...
 ```
 
 
 
 
-Other potentially useful link - the Jenkins tool keeps track of the output from the underlying sPHENIX build every night. One can take a look at the [output](https://web.racf.bnl.gov/jenkins-sphenix/job/sPHENIX/job/singularity-download-validation/72/console) from running the Singularity container from scratch on the RCAS computers, which may provide some helpful feedback to compare to what kind of output you are getting locally.
+Other potentially useful link - the Jenkins tool keeps track of the output from the underlying EIC build every night. One can take a look at the [output](https://web.racf.bnl.gov/jenkins-sphenix/job/EIC/job/singularity-download-validation/72/console) from running the Singularity container from scratch on the RCAS computers, which may provide some helpful feedback to compare to what kind of output you are getting locally.

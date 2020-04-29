@@ -1,6 +1,6 @@
-# Singularity container for sPHENIX and EIC-sPHENIX
+# Singularity container for EIC Fun4All
 
-Singularity container for sPHENIX and EIC-sPHENIX allow collaborators to run sPHENIX RCF/SDCC environment with the nightly builds on your local computers or on external high-performance computing clusters. 
+Singularity container for EIC Fun4All allows any user to run the EIC RCF/SDCC environment with the nightly builds on your local computers or on external high-performance computing clusters. 
 
 This repository is part of [the software tutorial](https://eic-detector.github.io/tutorials_landing_page.html), in particular for users offsite to [the BNL RACF computer center](https://www.racf.bnl.gov/). This repository includes the instruction and local update macro for this Singularity container, which ensures binary reproducible simulation and reconstruction.
 
@@ -16,9 +16,9 @@ This repository is part of [the software tutorial](https://eic-detector.github.i
 
 # How to download
 
-sPHENIX and EIC-sPHENIX software can be obtained to your local computing environment in two ways: 
+EIC Fun4All software can be obtained to your local computing environment in two ways: 
 
-1. **[Option-1 Mount sPHENIX CVMFS](#option-1-mount-sphenix-cvmfs)**: sPHENIX container, software and builds are distribute on [CVMFS](https://www.racf.bnl.gov/docs/services/cvmfs/info) since Nov 2018. Like RCF/SDCC computing cluster at BNL, external collaborating computing center could also mount the `/cvmfs/sphenix.opensciencegrid.org` (*preferred choice*) or `/cvmfs/sphenix.sdcc.bnl.gov/` CVMFS repository, which automatically obtain, buffer and update all sPHENIX build files. `/cvmfs/sphenix.opensciencegrid.org` is also distributed by default throughout the [Open Science Grid](opensciencegrid.org). 
+1. **[Option-1 Mount sPHENIX CVMFS](#option-1-mount-sphenix-cvmfs)**: sPHENIX container, software and builds are distribute on [CVMFS](https://www.racf.bnl.gov/docs/services/cvmfs/info) since Nov 2018. Like RCF/SDCC computing cluster at BNL, external collaborating computing center could also mount the `/cvmfs/sphenix.opensciencegrid.org` (*preferred choice*) or `/cvmfs/eic.opensciencegrid.org/` CVMFS repository, which automatically obtain, buffer and update all sPHENIX build files. `/cvmfs/sphenix.opensciencegrid.org` is also distributed by default throughout the [Open Science Grid](opensciencegrid.org). 
 2. **[Option-2 Download sPHENIX build via HTTPS archive](#option-2-download-sphenix-build-via-https-archive)**: one can also directly download the files for sPHENIX build to a local folder via [the nightly refreshed HTTPS archive](https://www.phenix.bnl.gov/WWW/publish/phnxbld/sPHENIX/Singularity/). 
 
 The advantage of **Option-1 Mount sPHENIX CVMFS** is that it mounts all sPHENIX builds and software and perform automatic caching and updates. This would be suitable for the case of a computing center or server environment. However, it requires constant network connection to function. Therefore, if you wish to use sPHENIX/EIC-sPHENIX software on a laptop during travel, **Option-2 Downloading sPHENIX build via HTTPS archive** would work best. All download instructions are the same for sPHENIX and EIC-sPHENIX. 
@@ -35,23 +35,7 @@ The advantage of **Option-1 Mount sPHENIX CVMFS** is that it mounts all sPHENIX 
 
     - *Note: for loading `/cvmfs/sphenix.opensciencegrid.org` by default, you may need to add `CVMFS_STRICT_MOUNT=no` to `/etc/cvmfs/default.local`.*
 
-3. [**Optional**] *this step only applies to mounting `/cvmfs/sphenix.sdcc.bnl.gov/` in order to reproduce identical CVMFS structure with SDCC/RCF. However, use of `/cvmfs/sphenix.opensciencegrid.org` is more convenient and this step can be skipped*. 
-
-Copy these three configuration and key files to your local computer from RCF (e.g. from any interactive RCF computer nodes):
-
-```
-/etc/cvmfs/keys/sdcc.bnl.gov/sphenix.sdcc.bnl.gov.pub
-/etc/cvmfs/config.d/sphenix.sdcc.bnl.gov.local
-/etc/cvmfs/domain.d/sdcc.bnl.gov.local
-```
-
-   Add `sphenix.sdcc.bnl.gov` to `CVMFS_REPOSITORIES` in `/etc/cvmfs/default.local`. e.g. 
-```
-CVMFS_REPOSITORIES=sphenix.sdcc.bnl.gov
-```
-   Next please specif `CVMFS_HTTP_PROXY=...` in `/etc/cvmfs/default.local` for the proxy setting of your local computing to access the `http://cvmfs.sdcc.bnl.gov:8000/` server. For direct network access, please use `CVMFS_HTTP_PROXY=DIRECT` .
-
-   After completing step 2 and 3, please confirm you can read local path `/cvmfs/sphenix.sdcc.bnl.gov/`, which should show same content as that on RCF interactive nodes. 
+   After completing step 2, please confirm you can read local path `/cvmfs/eic.opensciencegrid.org/`, which should show same content as that on RCF interactive nodes. 
    
 4. launch singularity container for sPHENIX and EIC-sPHENIX with following command
 
@@ -66,10 +50,10 @@ root # give a test
 
 *For Singularity v3+, in particular CERN computing users: `rhic_sl7_ext.simg` might be slow to load under certain Singularity security settings at your computing center. In that case, please load with an alternative image: `singularity shell -B /cvmfs:/cvmfs /cvmfs/sphenix.opensciencegrid.org/singularity/rhic_sl7_ext`*
 
-  - For `/cvmfs/sphenix.sdcc.bnl.gov` users:
+  - For `/cvmfs/eic.opensciencegrid.org` users:
 
 ```
-singularity shell -B /cvmfs:/cvmfs /cvmfs/sphenix.sdcc.bnl.gov/singularity/rhic_sl7_ext.simg
+singularity shell -B /cvmfs:/cvmfs /cvmfs/eic.opensciencegrid.org/singularity/rhic_sl7_ext.simg
 source /opt/sphenix/core/bin/sphenix_setup.sh -n   # setup sPHENIX environment in the singularity container shell. Note the shell is bash by default
 root # give a test
 ```
@@ -100,8 +84,8 @@ This macro download the current release of sPHENIX/EIC-sPHENIX Singularity conta
 4. Start the container with 
 
 ```
-singularity shell -B cvmfs:/cvmfs cvmfs/sphenix.sdcc.bnl.gov/singularity/rhic_sl7_ext.simg
-source /opt/sphenix/core/bin/sphenix_setup.sh -n   # setup sPHENIX environment in the singularity container shell. Note the shell is bash by default
+singularity shell -B cvmfs:/cvmfs cvmfs/eic.opensciencegrid.org/singularity/rhic_sl7_ext.simg
+source /cvmfs/eic.opensciencegrid.org/x8664_sl7/opt/fun4all/core/bin/eic_setup.sh -n   # setup EIC environment in the singularity container shell. Note the shell is bash by default
 root # give a test
 ```
 *Please note the slight difference in singularity shell commands for option 1 and option 2*
@@ -111,14 +95,13 @@ root # give a test
 
 # What's next
 
-After entering the Singularity container, you can source sPHENIX environment and interact with it in the same way as on RCF: 
+After entering the Singularity container, you can source the EIC environment and interact with it in the same way as on RCF: 
 
 ```
 computer:~/> singularity shell <options depending on which of the two downloading options above>
 Singularity: Invoking an interactive shell within container...
-Singularity rhic_sl7_ext.simg:~/> source /opt/sphenix/core/bin/sphenix_setup.sh -n  
-# or source /cvmfs/sphenix.opensciencegrid.org/x8664_sl7/opt/sphenix/core/bin/sphenix_setup.sh -n # if using sphenix.opensciencegrid.org
-# or source /cvmfs/sphenix.opensciencegrid.org/gcc-8.3/opt/sphenix/core/bin/sphenix_setup.sh -n # if using gcc v8
+Singularity rhic_sl7_ext.simg:~/> source  /cvmfs/eic.opensciencegrid.org/x8664_sl7/opt/fun4all/core/bin/eic_setup.sh -n
+# or source /cvmfs/eic.opensciencegrid.org/gcc-8.3/opt/sphenix/core/bin/sphenix_setup.sh -n # if using gcc v8
 Singularity rhic_sl7_ext.simg:~/> lsb_release  -a         # Verify same environment shows up as that on RCF
 LSB Version:	:core-4.1-amd64:core-4.1-ia32:core-4.1-noarch
 Distributor ID:	Scientific
@@ -135,7 +118,7 @@ Next, please try [the software tutorial](https://eic-detector.github.io/tutorial
 
 ## MacOS installation
 
-Singularity runs under linux OS. But in macOS, it require another layer of virtual machine to generate a linux environment first ([read more on Singularity docs](https://www.sylabs.io/guides/2.5/user-guide/quick_start.html#installation)). The easiest approach would be using the container [within a Unbuntu VirtualBox](VirtualBox.md). Alternatively, Here is [a more detailed guild on the macOS installation of sPHENIX container](./OSX_installationguide.md). 
+Singularity runs under linux OS. But in macOS, it require another layer of virtual machine to generate a linux environment first ([read more on Singularity docs](https://www.sylabs.io/guides/2.5/user-guide/quick_start.html#installation)). The easiest approach would be using the container [within a Unbuntu VirtualBox](VirtualBox.md). Alternatively, Here is [a more detailed guild on the macOS installation of the EIC container](./OSX_installationguide.md). 
 
 ## Windows installation
 
