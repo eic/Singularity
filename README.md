@@ -1,2 +1,2 @@
 # Singularity
-Singularity container for Fun4All
+Launcher and update macro for the EIC Singularity container
