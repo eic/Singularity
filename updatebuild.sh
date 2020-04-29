@@ -2,7 +2,6 @@
 
 # Default parameter
 build='new';
-# build='root5';
 URLBase='https://www.phenix.bnl.gov/WWW/publish/phnxbld/EIC/Singularity';
 sysname='x8664_sl7'
 DownloadBase='cvmfs/eic.opensciencegrid.org';
@@ -33,7 +32,7 @@ case $i in
     shift # past argument=value
     ;;
     --help|-h|*)
-    echo "Usage: $0 [--build=<new|root5>] [--sysname=<x8664_sl7|gcc-8.3>] [--source=URL] [--target=directory] [--clean]";
+    echo "Usage: $0 [--build=<new>] [--sysname=<x8664_sl7|gcc-8.3>] [--source=URL] [--target=directory] [--clean]";
     exit;
     shift # past argument with no value
     ;;
