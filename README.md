@@ -76,6 +76,12 @@ singularity shell -B cvmfs:/cvmfs cvmfs/eic.opensciencegrid.org/singularity/rhic
 source /cvmfs/eic.opensciencegrid.org/x8664_sl7/opt/fun4all/core/bin/eic_setup.sh -n   # setup EIC environment in the singularity container shell. Note the shell is bash by default
 root # give a test
 ```
+*if you get an error, start singularity with --writable like* 
+
+```
+singularity shell --writable -B cvmfs:/cvmfs cvmfs/eic.opensciencegrid.org/singularity/rhic_sl7_ext.simg
+```
+
 *Please note the slight difference in singularity shell commands for option 1 and option 2 (/cvmfs versus cvmfs)*
 
 5. To get daily build update, run the download/update macro [updatebuild.sh](./updatebuild.sh) to sync build files again. 
