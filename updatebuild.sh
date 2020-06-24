@@ -2,7 +2,7 @@
 
 # Default parameter
 build='new';
-URLBase='https://www.phenix.bnl.gov/WWW/publish/phnxbld/EIC/Singularity';
+URLBase='https://sphenix.sdcc.bnl.gov/WWW/user/phnxbld/EIC/Singularity';
 sysname='x8664_sl7'
 DownloadBase='cvmfs/eic.opensciencegrid.org';
 CleanDownload=false
