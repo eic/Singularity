@@ -128,14 +128,14 @@ echo "EIC build images"
 echo "--------------------------------------------------------"
 
 declare -a images=("opt.tar.bz2" "offline_main.tar.bz2" "utils.tar.bz2")
-mkdir -p ${DownloadBase}/.md5/${build}/
+mkdir -p ${DownloadBase}/${sysname}/.md5/${build}/
 
 
 ## now loop through the above array
 for tarball in "${images[@]}"
 do
     # echo "Downloading and decompress ${URLBase}/${build}/${tarball} ..."
-    md5file="${DownloadBase}/.md5/${build}/${tarball}.md5";
+    md5file="${DownloadBase}/${sysname}/.md5/${build}/${tarball}.md5";
     md5_check ${URLBase}/${sysname}/${build}/${tarball}.md5 ${md5file}
     if [ $? != 0 ]; then
 	# clean up existing installation if it exists
