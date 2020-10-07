@@ -45,7 +45,7 @@ Singularity> root Fun4All_G4_EICDetector.C
   | Welcome to ROOT 6.16/00                  https://root.cern |
 ...
 ```
-Then welcome to follow the default macro tutorials: https://github.com//eic/fun4all_macros
+Then you are welcome to follow the default macro tutorials: https://github.com/eic/fun4all_macros
 
 Please note the first use of a day will be slow, as CVMFS caches files from BNL SDCC over the network. You are also welcome use [Option-2 downloading a build and run the software without internet](/README.md#option-2-download-sphenix-build-via-https-archive). In this case you have to start the singularity container via
 ```
