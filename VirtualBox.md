@@ -39,7 +39,7 @@ Singularity> git clone https://github.com/eic/fun4all_macros.git
 Cloning into 'macros'...
 ...
 
-Singularity> cd macros/detectors/EICDetector
+Singularity> cd fun4all_macros/detectors/EICDetector
 Singularity> root Fun4All_G4_EICDetector.C
    ------------------------------------------------------------
   | Welcome to ROOT 6.16/00                  https://root.cern |
