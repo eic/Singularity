@@ -5,7 +5,7 @@ Singularity container for EIC Fun4All allows any user to run the EIC RCF/SDCC en
 This repository is part of [the software tutorial](https://eic-detector.github.io/tutorials_landing_page.html), in particular for users offsite to [the BNL RACF computer center](https://www.racf.bnl.gov/). This repository includes the instruction and local update macro for this Singularity container, which ensures binary reproducible simulation and reconstruction.
 
 **Daily validations:** `updatebuild.sh --build=new` 
-[![Build Status](https://web.racf.bnl.gov/jenkins-sphenix/buildStatus/icon?job=EIC%2Fsingularity-download-validation)](https://web.racf.bnl.gov/jenkins-sphenix/job/EIC/job/singularity-download-validation/)
+[![Build Status](https://web.sdcc.bnl.gov/jenkins-sphenix/buildStatus/icon?job=EIC%2Fsingularity-download-validation)](https://web.sdcc.bnl.gov/jenkins-sphenix/job/EIC/job/singularity-download-validation/)
 
 [![Macros](https://img.shields.io/badge/standard%20macros-git-green.svg)](https://github.com/eic/fun4all_macros)
 [![Tutorials](https://img.shields.io/badge/tutorials-git-green.svg)](https://github.com/eic/fun4all_eic_tutorials)
@@ -128,6 +128,4 @@ The container is built for batch computing. It could be tricky to bring up 3D-ac
 Occasionally, local download cache can become corrupt, e.g. after an interrupted `updatebuild.sh` call. If you encounter a problem executing container, it is always useful to first try clean up the local download buffer by removing the `./cvmfs` folder and download again. Or you can run `./updatebuild.sh --clean <other options>` which force a clean download (default is incremental updates). 
 
 If you have RCF credentials, you can also compare your local output with the daily test runs of the default simulation macro in the container following these links: `updatebuild.sh --build=new` 
-[![Build Status](https://web.racf.bnl.gov/jenkins-sphenix/buildStatus/icon?job=sPHENIX%2Fsingularity-download-validation)](https://web.racf.bnl.gov/jenkins-sphenix/job/sPHENIX/job/singularity-download-validation/) , 
-`--build=root5`
-[![Build Status](https://web.racf.bnl.gov/jenkins-sphenix/buildStatus/icon?job=sPHENIX%2Fsingularity-download-validation-root5)](https://web.racf.bnl.gov/jenkins-sphenix/job/sPHENIX/job/singularity-download-validation-root5/)
+[![Build Status](https://web.sdcc.bnl.gov/jenkins-sphenix/buildStatus/icon?job=sPHENIX%2Fsingularity-download-validation)](https://web.sdcc.bnl.gov/jenkins-sphenix/job/sPHENIX/job/singularity-download-validation/) 
