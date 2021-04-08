@@ -116,6 +116,22 @@ Singularity runs under linux OS. But in macOS, it require another layer of virtu
 
 The easiest approach is to install [Virtual Box](https://www.virtualbox.org/) running our [within a Unbuntu VirtualBox](VirtualBox.md).
 
+## Ubuntu VirtualBox Troubleshooting
+
+### Unable to access CVMFS OSG volume
+If you are unable to find the CVMFS volume on the virtual box at `/cvmfs/eic.opensciencegrid.org/singularity/fun4all_scripts` (e.g. you can't do an `ls` at that directory), check the CVMFS setup on your virtual box with:
+```
+$ sudo cvmfs_config chksetup
+``` 
+which should return `OK`.
+
+If you are still unable to access the setup script, you should check your network settings. The virtual box requires access to some ports that may be blocked by your network or a firewall on your network. To check this, try accessing the following link in your browser, both locally and on the virtual machine:
+```
+http://cvmfs-s1bnl.opensciencegrid.org:8000/
+```
+
+It should display a blank white page that says `Nothing to see here.` If it does not on the VM (for example, it shows a problem loading page connection reset), it is likely that the port that the VM needs to connect to the CVMFS volume is blocked. 
+
 ## 3D accelerated Graphics
 
 The container is built for batch computing. It could be tricky to bring up 3D-accelerated graphics for Geant4 display. 
